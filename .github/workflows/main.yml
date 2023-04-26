@@ -1,0 +1,22 @@
+name: Echo version
+
+on: [workflow_dispatch]
+
+
+jobs:
+  echo_version:
+    name: echo version as output
+    runs-on: windows-latest
+    steps:
+      - name: Get package.json version
+        uses: actions/github-script@v6
+        id: getver
+        with:
+              script: |
+                const { resolve, normalize } = require('path');
+                const packageLocation = normalize('./package.json');
+                core.info(`Location of the package.json verification script is: ${ resolve(packageLocation) }`)
+                const packageJson = require(packageLocation);
+
+                const packageJsonVersion = packageJson.version;
+                core.setOutput('version', packageJsonVersion);

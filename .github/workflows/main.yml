@@ -18,7 +18,7 @@ jobs:
                 const { resolve, normalize } = require('path');
                 const packageLocation = normalize('./package.json');
                 core.info(`Location of the package.json verification script is: ${ resolve(packageLocation) }`)
-                const packageJson = require(packageLocation);
+                const packageJson = require("./package.json");
 
                 const packageJsonVersion = packageJson.version;
                 core.setOutput('version', packageJsonVersion);
